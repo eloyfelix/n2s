@@ -12,7 +12,7 @@ app = FastAPI()
 
 @app.get("/is-chemical/{name}")
 def is_chemical(name: str):
-    res = synonyms.filter(pa.compute.equal(synonyms["synonym"], name.lower()))
+    res = synonyms.filter(pa.compute.equal(synonyms["value"], name.lower()))
     if not res:
         cid = None
     else:
@@ -22,7 +22,7 @@ def is_chemical(name: str):
 
 @app.get("/name-to-structure/{name}")
 def name_to_structure(name: str):
-    res = synonyms.filter(pa.compute.equal(synonyms["synonym"], name.lower()))
+    res = synonyms.filter(pa.compute.equal(synonyms["value"], name.lower()))
     if not res:
         cid = None
     else:
