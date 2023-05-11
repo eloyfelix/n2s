@@ -3,7 +3,7 @@
 Build and run docker image
 
 ```
-docker build -t n2s --progress plain
+docker build -t n2s . --progress plain
 docker run -p80:80 n2s
 ```
 
