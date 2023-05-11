@@ -32,5 +32,5 @@ def name_to_structure(name: str):
     if not res:
         structure = None
     else:
-        structure = res["SMILES"][0].as_py()
+        structure = res["value"][0].as_py()
     return {"structure": structure}
