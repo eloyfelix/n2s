@@ -10,8 +10,18 @@ smiles = pq.read_table("/code/pubchem_smiles.parquet", memory_map=True)
 app = FastAPI()
 
 
+@app.get("/is-chemical/{name}")
+def is_chemical(name: str):
+    res = synonyms.filter(pa.compute.equal(synonyms["synonym"], name.lower()))
+    if not res:
+        cid = None
+    else:
+        cid = res["cid"][0].as_py()
+    return True if cid else False
+
+
 @app.get("/name-to-structure/{name}")
-def n2s(name: str):
+def name_to_structure(name: str):
     res = synonyms.filter(pa.compute.equal(synonyms["synonym"], name.lower()))
     if not res:
         cid = None
